@@ -1,8 +1,18 @@
 
 import './App.css';
 import Video from './Video';
+import React, {useState, useEffect} from 'react';
+import db from "./firebase";
+
 
 function App() {
+  const [reels, setReels] = useState([]);
+
+  useEffect (() => {
+    db.collection('reels').onSnapshot(snapshot =>(
+      setReels(snapshot.docs.map(doc => doc.data()))
+    ))
+  }, [])
   return (
     //BEM naming convention
     <div className="app">
@@ -18,16 +28,18 @@ function App() {
       <br/>
       <div className="app__videos"> 
           {/* Container of app videos */}
+          {reels.map( ({channel, avatarSrc,song,
+          url, likes, shares})  => (
          <Video
-         channel='cleversnehal'
-         avatarSrc=''
-         song='Test song by Snehal'
-         url='https://scontent-bos3-1.cdninstagram.com/v/t50.2886-16/133082951_424219708771675_3496559754095320856_n.mp4?_nc_ht=scontent-bos3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=Y8x-5zc2j7kAX_BPivj&oe=5FF3263E&oh=9f8c9c97e89f90b3cdec310bc7a7c7e6'
-         likes={950}
-         shares={30}
+         channel={channel}
+         avatarSrc={avatarSrc}
+         song={song}
+         url={url}
+         likes={likes}
+         shares={shares}
          />
-         <Video/>
-         <Video/>
+          ))}
+        
       </div> 
     </div>
   );
