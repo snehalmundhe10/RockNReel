@@ -1,0 +1,13 @@
+Instagram clone built with React
+Deploy using Firebase
+Videos are stored in Firebase
+Using Firebase Real-Time Database
+CSS Tricks + hacks
+How the tik Tok style vertical snapping
+Material UI
+React Ticker ...(For scrolling ticker)
+
+Data flow with React Hooks
+
+Functional components - modern react technique
+You cannot use react hooks with class component but only with functional components
